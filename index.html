@@ -1,255 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For Jesse, My Love ❤️</title>
+<meta charset="UTF-8">
+<title>For Jesse ❤️</title>
 
-  <!-- Pinterest aesthetic fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Quicksand&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffdbe6, #fff0f5, #ffe4ec);
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-      position: relative;
-    }
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:url('paper.jpg') center/cover no-repeat fixed;
+    font-family:'Quicksand',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
 
-    /* soft glow background */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 20% 30%, rgba(255,182,193,0.3), transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(255,192,203,0.3), transparent 40%);
-      animation: floatBg 15s ease-in-out infinite alternate;
-    }
+/* LOADING SCREEN */
+#loading{
+    position:fixed;
+    inset:0;
+    background:url('paper.jpg') center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+    font-family:'Orbitron',sans-serif;
+    font-size:32px;
+    color:#b3003c;
+    letter-spacing:3px;
+    animation:fadeOut 2.5s forwards;
+    animation-delay:2s;
+}
 
-    @keyframes floatBg {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-40px); }
-    }
+@keyframes fadeOut{
+    to{opacity:0; visibility:hidden;}
+}
 
-    .container {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+/* MAIN CONTENT */
+.wrapper{
+    text-align:center;
+}
 
-    .title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      color: #ff4d88;
-      margin-bottom: 10px;
-      animation: fadeIn 2s ease forwards;
-    }
+h1{
+    font-family:'Orbitron',sans-serif;
+    color:#b3003c;
+    letter-spacing:2px;
+    margin-bottom:25px;
+    text-shadow:0 0 10px rgba(255,0,80,0.4);
+}
 
-    .subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: #cc6f8c;
-      font-size: 16px;
-      margin-bottom: 25px;
-      opacity: 0.8;
-    }
+.heart{
+    width:230px;
+    cursor:pointer;
+    transition:0.4s;
+}
 
-    .heart {
-      width: 140px;
-      height: 140px;
-      background: linear-gradient(145deg, #ff85a2, #ff3d77);
-      position: relative;
-      transform: rotate(-45deg);
-      margin: auto;
-      cursor: pointer;
-      animation: heartbeat 1.4s infinite;
-      box-shadow: 0 15px 50px rgba(255, 61, 119, 0.5);
-      transition: transform 0.3s ease;
-    }
+.heart:hover{
+    transform:scale(1.08) rotate(-2deg);
+}
 
-    .heart:hover {
-      transform: rotate(-45deg) scale(1.2);
-    }
+/* POPUP */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      width: 140px;
-      height: 140px;
-      background: linear-gradient(145deg, #ff85a2, #ff3d77);
-      border-radius: 50%;
-      position: absolute;
-    }
+.letter{
+    background:white;
+    max-width:650px;
+    max-height:80vh;
+    overflow:auto;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.3);
+    animation:fade 0.7s ease;
+    line-height:1.7;
+    color:#444;
+}
 
-    .heart::before {
-      top: -70px;
-      left: 0;
-    }
+.letter h2{
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    color:#b3003c;
+}
 
-    .heart::after {
-      left: 70px;
-      top: 0;
-    }
+.close{
+    text-align:center;
+    margin-top:20px;
+    cursor:pointer;
+    color:#b3003c;
+    font-weight:bold;
+}
 
-    @keyframes heartbeat {
-      0%, 100% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.15); }
-    }
-
-    .click-text {
-      margin-top: 15px;
-      color: #ff4d88;
-      font-size: 14px;
-      font-style: italic;
-    }
-
-    .letter {
-      display: none;
-      margin-top: 30px;
-      width: 400px;
-      max-height: 70vh;
-      overflow-y: auto;
-      padding: 35px;
-      border-radius: 30px;
-
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(15px);
-
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-
-      animation: letterAppear 1.5s ease forwards;
-    }
-
-    .letter h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 40px;
-      color: #ff4d88;
-      margin-bottom: 15px;
-    }
-
-    .letter p {
-      font-size: 15px;
-      line-height: 1.9;
-      color: #444;
-      white-space: pre-line;
-    }
-
-    @keyframes letterAppear {
-      from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .floating-heart {
-      position: absolute;
-      font-size: 18px;
-      color: #ff6b9a;
-      animation: floatUp linear;
-      opacity: 0.6;
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(-10vh);
-        opacity: 1;
-      }
-    }
-
-    iframe {
-      display: none;
-    }
-
-  </style>
+@keyframes fade{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
 </head>
+
 <body>
 
-<!-- Ed Sheeran Perfect background music -->
-<iframe id="music"
-src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=0&loop=1&playlist=2Vv-BfVoq4g"
-allow="autoplay">
-</iframe>
+<!-- LOADING SCREEN -->
+<div id="loading">for jesse…</div>
 
-<div class="container">
+<!-- MUSIC FROM YOUTUBE -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g"
+frameborder="0" allow="autoplay"></iframe>
 
-  <div class="title">For Jesse</div>
-  <div class="subtitle">my heart belongs to you</div>
+<!-- MAIN PAGE -->
+<div class="wrapper">
+    <h1>click on the heart ♡</h1>
+    <img src="heart.png" class="heart" onclick="openLetter()">
+</div>
 
-  <div class="heart" onclick="openLetter()"></div>
+<!-- LETTER POPUP -->
+<div class="popup" id="popup">
+<div class="letter">
 
-  <div class="click-text">click my heart, my love ♡</div>
+<h2>For you, Jesse</h2>
 
-  <div class="letter" id="letter">
+<p>“I’m sorry” feels so small compared to how much sadness I carry in my heart.
+I keep replaying everything in my mind, wishing I could go back and choose words that would never hurt you.</p>
 
-    <h2>My Jesse,</h2>
+<p>The truth is that you never deserved that side of me — not you, not the person who has loved me so gently and stood beside me with so much patience.
+It makes me so sad knowing that I was the reason for the pain in your heart.</p>
 
-    <p>
-I don’t even know where to begin because “I’m sorry” feels so small compared to how much sadness I carry in my heart. I keep replaying everything in my mind, wishing I could go back and choose words that would never hurt you. The truth is that you never deserved that side of me. Not you. Not the person who has loved me so gently and stood beside me with so much patience.
+<p>You are the last person in this world I would ever want to hurt… yet I did.</p>
 
-It makes me so sad knowing that I was the reason for the pain in your heart. You are the last person in this world I would ever want to hurt, yet I did. The love I have for you is the most real, most terrifying, and most beautiful thing I’ve ever known.
+<p>The love I have for you is the most real, most terrifying, and most beautiful thing I’ve ever known.
+You are not just someone in my life, Jesse. You are my safe place.
+You are in the quiet parts of my day, in the thoughts I don’t say out loud, in the way I wish I could just hold you and make everything okay again.</p>
 
-You are not just someone in my life, Jesse. You are my safe place. You are the person my heart reaches for without thinking. You are in the quiet parts of my day, in the thoughts I don’t say out loud, in the way I wish I could just hold you and make everything okay again.
+<p>Loving you isn’t something I choose once — it’s something my heart chooses every second over and over again without hesitation.
+I love you when I’m at my best, I love you even when I feel the worst, and I will keep loving you no matter what.</p>
 
-Loving you isn’t something I choose once. It’s something my heart chooses every second, over and over again, without hesitation. I love you when I’m at my best. I love you even when I feel the worst. And I will keep loving you no matter what.
+<p>The thought of losing you is something I can’t even put into words.
+You are not temporary. You are not replaceable.
+You are someone my heart has made a home for.</p>
 
-The thought of losing you is something I can’t even put into words. You are never going to be replaceable. You are not temporary. You are someone my heart has made a home for.
+<p>I’m so, so sorry for hurting someone who only ever deserved to be loved gently.</p>
 
-I’m so, so sorry for hurting someone who only ever deserved to be loved gently.
+<p>If I could hold your face in my hands right now, I would tell you how much you mean to me,
+how grateful I am for you, and how deeply, endlessly, and truly I love you.</p>
 
-If I could hold your face in my hands right now, I would tell you how much you mean to me. How grateful I am for you. How deeply, endlessly, and truly I love you, my baby.
+<p><b>I’m sorry bubba. I love youuuu.</b></p>
 
-I’m sorry bubba.
-I love youuuu.
+<p style="text-align:right;margin-top:25px;">
+With love,<br>
+<b>Ur Wifey ♡</b>
+</p>
 
-With love,
-Your wifey ❤️
+<div class="close" onclick="closeLetter()">close</div>
 
-    </p>
-
-  </div>
-
+</div>
 </div>
 
 <script>
-
-function openLetter() {
-
-  document.getElementById("letter").style.display = "block";
-
-  const iframe = document.getElementById("music");
-  iframe.src = "https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g";
-
+function openLetter(){
+    document.getElementById("popup").style.display="flex";
 }
-
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "floating-heart";
-  heart.innerHTML = "♡";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 10000);
+function closeLetter(){
+    document.getElementById("popup").style.display="none";
 }
-
-setInterval(createHeart, 500);
-
 </script>
 
 </body>
