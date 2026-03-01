@@ -4,191 +4,176 @@
 <meta charset="UTF-8">
 <title>For Jesse ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Quicksand&display=swap" rel="stylesheet">
-
 <style>
 body{
     margin:0;
-    height:100vh;
-    background:url('paper.jpg') center/cover no-repeat fixed;
-    font-family:'Quicksand',sans-serif;
+    font-family: 'Courier New', monospace;
+    background:#fff6f9;
     display:flex;
     justify-content:center;
     align-items:center;
+    height:100vh;
     overflow:hidden;
+    color:#d6336c;
 }
 
 /* LOADING SCREEN */
 #loading{
-    position:fixed;
-    inset:0;
-    background:url('paper.jpg') center/cover no-repeat;
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#fff6f9;
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:10;
-    font-family:'Orbitron',sans-serif;
-    font-size:34px;
-    color:#b3003c;
+    font-size:40px;
     letter-spacing:3px;
-    transition:opacity 1s ease;
+    animation:fadeOut 2s forwards;
+    animation-delay:2.5s;
 }
 
-/* MAIN PAGE */
+@keyframes fadeOut{
+    to{opacity:0;visibility:hidden;}
+}
+
+/* MAIN AREA */
 #main{
-    display:none;
     text-align:center;
+    opacity:0;
+    animation:fadeIn 2s forwards;
+    animation-delay:3s;
 }
 
-h1{
-    font-family:'Orbitron',sans-serif;
-    color:#b3003c;
-    margin-bottom:30px;
-    text-shadow:0 0 10px rgba(255,0,80,0.4);
+@keyframes fadeIn{
+    to{opacity:1;}
+}
+
+h2{
+    margin-bottom:40px;
+    font-weight:normal;
+    letter-spacing:2px;
 }
 
 /* PIXEL HEART */
-.pixel-heart{
-    width:120px;
-    height:120px;
-    position:relative;
-    margin:auto;
+.heart{
+    display:grid;
+    grid-template-columns:repeat(7,30px);
+    grid-template-rows:repeat(6,30px);
+    gap:6px;
+    justify-content:center;
     cursor:pointer;
-    transform:rotate(-45deg) scale(1);
     transition:0.3s;
 }
 
-.pixel-heart:hover{
-    transform:rotate(-45deg) scale(1.1);
+.pixel{
+    width:30px;
+    height:30px;
+    background:#ff4d88;
 }
 
-/* build heart squares */
-.pixel-heart div{
+.heart:hover{
+    transform:scale(1.1);
+}
+
+/* LETTER POPUP */
+#letter{
     position:absolute;
-    width:40px;
-    height:40px;
-    background:#ff2b5e;
-}
-
-.pixel-heart .square1{ top:40px; left:0; }
-.pixel-heart .square2{ top:0; left:40px; }
-.pixel-heart .square3{ top:40px; left:40px; }
-.pixel-heart .square4{ top:80px; left:40px; }
-.pixel-heart .square5{ top:40px; left:80px; }
-
-/* POPUP */
-.popup{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.45);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-
-.letter{
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    width:70%;
+    max-width:600px;
     background:white;
-    max-width:650px;
-    max-height:80vh;
-    overflow:auto;
     padding:40px;
-    border-radius:12px;
-    box-shadow:0 25px 60px rgba(0,0,0,0.3);
-    animation:fade 0.7s ease;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.15);
     line-height:1.7;
-    color:#444;
+    font-size:18px;
+    transition:0.5s;
+    overflow-y:auto;
+    max-height:80vh;
 }
 
-.letter h2{
-    text-align:center;
-    font-family:'Orbitron',sans-serif;
-    color:#b3003c;
-}
-
-.close{
-    text-align:center;
-    margin-top:20px;
-    cursor:pointer;
-    color:#b3003c;
-    font-weight:bold;
-}
-
-@keyframes fade{
-    from{opacity:0; transform:translateY(40px);}
-    to{opacity:1; transform:translateY(0);}
+#letter.show{
+    transform:translate(-50%,-50%) scale(1);
 }
 </style>
 </head>
 
 <body>
 
-<div id="loading">for jesse…</div>
+<!-- LOADING -->
+<div id="loading">For Jesse… ❤️</div>
 
-<!-- MUSIC -->
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g"
-frameborder="0" allow="autoplay"></iframe>
-
+<!-- MAIN -->
 <div id="main">
-    <h1>click on the heart ♡</h1>
+    <h2>click on the heart ♡</h2>
 
-    <div class="pixel-heart" onclick="openLetter()">
-        <div class="square1"></div>
-        <div class="square2"></div>
-        <div class="square3"></div>
-        <div class="square4"></div>
-        <div class="square5"></div>
+    <div class="heart" onclick="openLetter()">
+        <!-- row1 -->
+        <div class="pixel"></div><div class="pixel"></div><div></div><div></div><div class="pixel"></div><div class="pixel"></div><div></div>
+
+        <!-- row2 -->
+        <div class="pixel"></div><div class="pixel"></div><div class="pixel"></div><div class="pixel"></div><div class="pixel"></div><div class="pixel"></div><div></div>
+
+        <!-- row3 -->
+        <div></div><div class="pixel"></div><div class="pixel"></div><div class="pixel"></div><div class="pixel"></div><div></div><div></div>
+
+        <!-- row4 -->
+        <div></div><div></div><div class="pixel"></div><div class="pixel"></div><div></div><div></div><div></div>
+
+        <!-- row5 -->
+        <div></div><div></div><div></div><div class="pixel"></div><div></div><div></div><div></div>
     </div>
 </div>
 
-<div class="popup" id="popup">
-<div class="letter">
+<!-- LETTER -->
+<div id="letter">
+im sorry feels so small compared to how much sadness i carry in my heart.  
+i keep replaying everything in my mind and wishing i could go back and choose words that would never hurt you.  
 
-<h2>For you, Jesse</h2>
+the truth is that you never deserved that side of me.  
+not you. not the person who has loved me so gently and stood beside me with so much patience.  
 
-<p>“I’m sorry” feels so small compared to how much sadness I carry in my heart.
-I keep replaying everything in my mind, wishing I could go back and choose words that would never hurt you.</p>
+it makes me so sad knowing i was the reason for pain in your heart.  
+you are the last person in this world i would ever want to hurt, yet i did.  
 
-<p>The truth is that you never deserved that side of me — not you, not the person who has loved me so gently and stood beside me with so much patience.
-It makes me so sad knowing that I was the reason for the pain in your heart.</p>
+the love i have for you is the most real, most terrifying, and most beautiful thing ive ever known.  
 
-<p>You are the last person in this world I would ever want to hurt… yet I did.</p>
+you are not just someone in my life jesse.  
+you are my safe place.  
+you are the person my heart reaches for without thinking.  
+you are in the quiet parts of my day, in the thoughts i don’t say out loud,  
+in the way i wish i could just hold you and make everything okay again.  
 
-<p>The love I have for you is the most real, most terrifying, and most beautiful thing I’ve ever known.
-You are not just someone in my life, Jesse. You are my safe place.</p>
+loving you isnt something i choose once.  
+it’s something my heart chooses every second, over and over again, without hesitation.  
 
-<p>Loving you isn’t something I choose once — it’s something my heart chooses every second.</p>
+i love you when i’m at my best.  
+i love you even when i feel my worst.  
+and i will keep loving you no matter what.  
 
-<p>I’m so, so sorry for hurting someone who only ever deserved to be loved gently.</p>
+the thought of losing you is something i cant even put into words.  
+you are never replaceable.  
+you are not temporary.  
+you are someone my heart has made a home for.  
 
-<p><b>I’m sorry bubba. I love youuuu.</b></p>
+and i’m so, so sorry for hurting someone who only ever deserved to be loved gently.  
 
-<p style="text-align:right;margin-top:25px;">
-With love,<br>
-<b>Ur Wifey ♡</b>
-</p>
+if i could hold your face in my hands right now,  
+i would tell you how much you mean to me,  
+how grateful i am for you,  
+how deeply, endlessly, and truly i love you.  
 
-<div class="close" onclick="closeLetter()">close</div>
+im sorry bubba.  
+i love youuuu ❤️  
 
-</div>
+— your wifey
 </div>
 
 <script>
-setTimeout(()=>{
-    document.getElementById("loading").style.opacity="0";
-    setTimeout(()=>{
-        document.getElementById("loading").style.display="none";
-        document.getElementById("main").style.display="block";
-    },1000);
-},3000);
-
 function openLetter(){
-    document.getElementById("popup").style.display="flex";
-}
-
-function closeLetter(){
-    document.getElementById("popup").style.display="none";
+    document.getElementById("letter").classList.add("show");
 }
 </script>
 
