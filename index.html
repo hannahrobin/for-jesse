@@ -28,19 +28,15 @@ body{
     align-items:center;
     z-index:10;
     font-family:'Orbitron',sans-serif;
-    font-size:32px;
+    font-size:34px;
     color:#b3003c;
     letter-spacing:3px;
-    animation:fadeOut 2.5s forwards;
-    animation-delay:2s;
+    transition:opacity 1s ease;
 }
 
-@keyframes fadeOut{
-    to{opacity:0; visibility:hidden;}
-}
-
-/* MAIN CONTENT */
-.wrapper{
+/* MAIN PAGE (hidden first) */
+#main{
+    display:none;
     text-align:center;
 }
 
@@ -53,7 +49,7 @@ h1{
 }
 
 .heart{
-    width:230px;
+    width:240px;
     cursor:pointer;
     transition:0.4s;
 }
@@ -112,18 +108,18 @@ h1{
 <!-- LOADING SCREEN -->
 <div id="loading">for jesse…</div>
 
-<!-- MUSIC FROM YOUTUBE -->
+<!-- MUSIC -->
 <iframe width="0" height="0"
 src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g"
 frameborder="0" allow="autoplay"></iframe>
 
 <!-- MAIN PAGE -->
-<div class="wrapper">
+<div id="main">
     <h1>click on the heart ♡</h1>
     <img src="heart.png" class="heart" onclick="openLetter()">
 </div>
 
-<!-- LETTER POPUP -->
+<!-- LETTER -->
 <div class="popup" id="popup">
 <div class="letter">
 
@@ -166,9 +162,19 @@ With love,<br>
 </div>
 
 <script>
+/* show main page after loading screen */
+setTimeout(()=>{
+    document.getElementById("loading").style.opacity="0";
+    setTimeout(()=>{
+        document.getElementById("loading").style.display="none";
+        document.getElementById("main").style.display="block";
+    },1000);
+},3000);
+
 function openLetter(){
     document.getElementById("popup").style.display="flex";
 }
+
 function closeLetter(){
     document.getElementById("popup").style.display="none";
 }
