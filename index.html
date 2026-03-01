@@ -34,7 +34,7 @@ body{
     transition:opacity 1s ease;
 }
 
-/* MAIN PAGE (hidden first) */
+/* MAIN PAGE */
 #main{
     display:none;
     text-align:center;
@@ -43,20 +43,38 @@ body{
 h1{
     font-family:'Orbitron',sans-serif;
     color:#b3003c;
-    letter-spacing:2px;
-    margin-bottom:25px;
+    margin-bottom:30px;
     text-shadow:0 0 10px rgba(255,0,80,0.4);
 }
 
-.heart{
-    width:240px;
+/* PIXEL HEART */
+.pixel-heart{
+    width:120px;
+    height:120px;
+    position:relative;
+    margin:auto;
     cursor:pointer;
-    transition:0.4s;
+    transform:rotate(-45deg) scale(1);
+    transition:0.3s;
 }
 
-.heart:hover{
-    transform:scale(1.08) rotate(-2deg);
+.pixel-heart:hover{
+    transform:rotate(-45deg) scale(1.1);
 }
+
+/* build heart squares */
+.pixel-heart div{
+    position:absolute;
+    width:40px;
+    height:40px;
+    background:#ff2b5e;
+}
+
+.pixel-heart .square1{ top:40px; left:0; }
+.pixel-heart .square2{ top:0; left:40px; }
+.pixel-heart .square3{ top:40px; left:40px; }
+.pixel-heart .square4{ top:80px; left:40px; }
+.pixel-heart .square5{ top:40px; left:80px; }
 
 /* POPUP */
 .popup{
@@ -105,7 +123,6 @@ h1{
 
 <body>
 
-<!-- LOADING SCREEN -->
 <div id="loading">for jesse…</div>
 
 <!-- MUSIC -->
@@ -113,13 +130,18 @@ h1{
 src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g"
 frameborder="0" allow="autoplay"></iframe>
 
-<!-- MAIN PAGE -->
 <div id="main">
     <h1>click on the heart ♡</h1>
-    <img src="heart.png" class="heart" onclick="openLetter()">
+
+    <div class="pixel-heart" onclick="openLetter()">
+        <div class="square1"></div>
+        <div class="square2"></div>
+        <div class="square3"></div>
+        <div class="square4"></div>
+        <div class="square5"></div>
+    </div>
 </div>
 
-<!-- LETTER -->
 <div class="popup" id="popup">
 <div class="letter">
 
@@ -134,20 +156,11 @@ It makes me so sad knowing that I was the reason for the pain in your heart.</p>
 <p>You are the last person in this world I would ever want to hurt… yet I did.</p>
 
 <p>The love I have for you is the most real, most terrifying, and most beautiful thing I’ve ever known.
-You are not just someone in my life, Jesse. You are my safe place.
-You are in the quiet parts of my day, in the thoughts I don’t say out loud, in the way I wish I could just hold you and make everything okay again.</p>
+You are not just someone in my life, Jesse. You are my safe place.</p>
 
-<p>Loving you isn’t something I choose once — it’s something my heart chooses every second over and over again without hesitation.
-I love you when I’m at my best, I love you even when I feel the worst, and I will keep loving you no matter what.</p>
-
-<p>The thought of losing you is something I can’t even put into words.
-You are not temporary. You are not replaceable.
-You are someone my heart has made a home for.</p>
+<p>Loving you isn’t something I choose once — it’s something my heart chooses every second.</p>
 
 <p>I’m so, so sorry for hurting someone who only ever deserved to be loved gently.</p>
-
-<p>If I could hold your face in my hands right now, I would tell you how much you mean to me,
-how grateful I am for you, and how deeply, endlessly, and truly I love you.</p>
 
 <p><b>I’m sorry bubba. I love youuuu.</b></p>
 
@@ -162,7 +175,6 @@ With love,<br>
 </div>
 
 <script>
-/* show main page after loading screen */
 setTimeout(()=>{
     document.getElementById("loading").style.opacity="0";
     setTimeout(()=>{
